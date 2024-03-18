@@ -1,8 +1,8 @@
 from Pessoa import Pessoa
 
 p1 = Pessoa(
-    nome = "Taiza",
-    idade = 28
+    nome = "Daniel",
+    idade = 20
 )
 
 print(f"Nome da Pessoa: {p1.nome}")
