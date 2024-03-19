@@ -1,6 +1,6 @@
 # Classe Pedido:
 + id: Int
-+ ano: String
++ end: String
 + produto: [Produto]
 + cliente: [Pessoa]
 
