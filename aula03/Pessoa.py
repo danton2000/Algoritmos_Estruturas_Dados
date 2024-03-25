@@ -7,4 +7,7 @@ class Pessoa:
         self.nome = nome
         self.idade = idade
         self.cidade = cid
-        print(f"Pessoa {self.nome} construida.")
+
+    def __str__(self):
+
+        return f"Pessoa: {self.nome}"

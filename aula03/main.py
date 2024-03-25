@@ -2,41 +2,70 @@ from Cidade import Cidade
 
 from Pessoa import Pessoa
 
-c1 = Cidade()
+from Produto import Produto
 
-c2 = Cidade(1, "Porto Alegre")
+from Categoria import Categoria
 
-c3 = Cidade(2, "Lajeado")
+from Pedido import Pedido
 
-print(c1)
+Cidade1 = Cidade()
 
-print(c2)
+Cidade2 = Cidade(1, "Porto Alegre")
 
-print(c3)
+cidade3 = Cidade(2, "Lajeado")
 
-p1 = Pessoa(
+print(Cidade1)
+
+print(Cidade2)
+
+print(cidade3)
+
+pessoa1 = Pessoa(
     nome = "Danton"
 )
 
-p2 = Pessoa(
+pessoa2 = Pessoa(
     nome = "Maria",
     idade = 20
 )
 
-p3 = Pessoa(
+pessoa3 = Pessoa(
     nome = "Daniel",
     idade = 21,
-    cid= c1
+    cid= Cidade1
 )
 
-p4 = Pessoa(
+pessoa4 = Pessoa(
     nome = "Daniel",
-    cid= c2
+    cid= Cidade2
 )
 
-p4 = Pessoa(
+pessoa5 = Pessoa(
     nome = "Luffy",
     idade = 30
 )
 
-print(p4.idade)
+print(pessoa5.idade)
+
+print("-------- Retirar Pedido --------")
+
+categoria = Categoria(nome = "Bebidas")
+
+produto1 = Produto("Coca-Cola", 7.99, 100, categoria)
+
+produto2 = Produto("Pepsi", 5.99, categoria = categoria)
+
+produto3 = Produto("Amendoin")
+
+pedido1 = Pedido("Rua A, 100", pessoa4)
+
+print(pedido1)
+
+# Adicionando produtos no pedido
+total = pedido1.addProduto(produto1)
+total = pedido1.addProduto(produto2)
+total = pedido1.addProduto(produto3)
+
+print(f"Total do Pedido: {total}")
+
+print(pedido1)

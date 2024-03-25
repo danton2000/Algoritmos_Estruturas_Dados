@@ -4,6 +4,8 @@
 + produto: [Produto]
 + cliente: [Pessoa]
 
++ addProduto()
+
 # Classe Produto:
 + id: Int
 + nome: String
