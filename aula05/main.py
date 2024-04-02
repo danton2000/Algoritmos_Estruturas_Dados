@@ -1,6 +1,8 @@
 from Categoria import Categoria 
 
-from Veiculo import Veiculo 
+from Veiculo import Veiculo
+
+from Automovel import Automovel
 
 from Carro import Carro
 
@@ -14,14 +16,48 @@ categoria3 = Categoria("Sedan")
 
 veiculo1 = Veiculo()
 
-veiculo1.imprimir()
+veiculo1.imprimirInformacoes()
 print("---")
 
-carro1 = Carro("Jepp", 2023, categoria1, 4)
+automovel1 = Automovel(
+    marca_veiculo=veiculo1.marca_veiculo,
+    qtd_rodas=veiculo1.qtd_rodas,
+    modelo_veiculo=veiculo1.modelo_veiculo,
+    velocidade_veiculo=veiculo1.velocidade_veiculo,
+    categoria=veiculo1.categoria,
+    potencia_motor=100
+)
 
-carro1.imprimir()
+automovel1.imprimirInformacoes()
+
 print("---")
 
-moto1 = Moto("BMW", 2022, categoria2, 1000)
+moto1 = Moto(
+    marca_veiculo=automovel1.marca_veiculo,
+    qtd_rodas=automovel1.qtd_rodas,
+    modelo_veiculo=automovel1.modelo_veiculo,
+    velocidade_veiculo=automovel1.velocidade_veiculo,
+    categoria=automovel1.categoria,
+    potencia_motor=automovel1.potencia_motor,
+    partida_eletrica=250
+)
 
-moto1.imprimir()
+moto1.imprimirInformacoes()
+
+print("---")
+
+carro1 = Carro(
+    marca_veiculo=automovel1.marca_veiculo,
+    qtd_rodas=automovel1.qtd_rodas,
+    modelo_veiculo=automovel1.modelo_veiculo,
+    velocidade_veiculo=automovel1.velocidade_veiculo,
+    categoria=automovel1.categoria,
+    potencia_motor=automovel1.potencia_motor,
+    qtd_portas=6
+)
+
+carro1.acelerarVeiculo(300)
+
+carro1.frearVeiculo(150)
+
+carro1.imprimirInformacoes()
