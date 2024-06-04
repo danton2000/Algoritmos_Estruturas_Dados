@@ -4,6 +4,12 @@ lista = Lista()
 
 lista.imprimir()
 
+lista.adicionarNoInicio("Gojo")
+
+lista.adicionarNoInicio("Yuji")
+
+quit()
+
 lista.adicionarNoFim("João")
 
 lista.adicionarNoFim("Marina")

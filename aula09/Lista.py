@@ -35,11 +35,14 @@ class Lista:
         #guardando em memoria e a referencia(instancia) do objeto
         nodo = No(valor)
         
+        #Se lista não está vazia
         if self.inicio != None:
             nodo.proximo = self.inicio
-
+        
+        # O atributo inicio recebe o objeto nodo contendo o dado atual e o proximo dado
         self.inicio = nodo
-            
+        
+        # incremetando o tamanho + 1
         self.tamanho += 1
         
         self.imprimir()
