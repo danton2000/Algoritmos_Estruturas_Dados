@@ -1,9 +1,8 @@
 # Construa o algoritmo em Python de uma lista duplamente encadeada que possui uma função para inserir elementos em ordem alfabética, uma função para imprimir os elementos da lista e uma função para imprimir os elementos na ordem inversa.
 
+Classe que representa um nó da lista duplamente encadeada.
 
 class Node:
-    
-    Classe que representa um nó da lista duplamente encadeada.
     
     def __init__(self, data):
         self.data = data
