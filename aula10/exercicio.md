@@ -76,7 +76,7 @@ class DoublyLinkedList:
             current = current.prev
         print()  # Nova linha após a impressão
 
-> Exemplo de uso:
+# Exemplo de uso:
 if __name__ == "__main__":
     dll = DoublyLinkedList()
     elementos = ["banana", "maçã", "laranja", "uva", "abacaxi"]
