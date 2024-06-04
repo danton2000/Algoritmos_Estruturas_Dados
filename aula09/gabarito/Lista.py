@@ -25,8 +25,6 @@ class Lista:
                 
                 nodo.proximo = self.inicio
                 
-                self.nodo.anterior = nodo
-                
                 self.inicio = nodo
                 
             else:
@@ -83,6 +81,53 @@ class Lista:
                 
                 var_aux = var_aux.proximo
                 
+    def remover(self, valor):
+        
+        #Saber se foi removido
+        tamInicial = self.tamanho
+        
+        if self.inicio != None:
+            # Se a lista contem  só 1 elemento e achou o valor para deletar
+            if self.inicio.proximo == None and self.inicio.dado == valor:
+                
+                self.inicio = None
+                
+                self.tamanho = 0
+            
+            # Se a lista contem vários elementos e o valor é igual ao primeiro   
+            elif self.inicio.dado == valor:
+                
+                self.inicio = self.inicio.proximo
+                
+                self.tamanho -= 1
+                
+            else:
+            #Se a lista contem vários elementos e o valor NÃO é igual ao primeiro   
+            
+                ant = self.inicio
+                
+                aux = self.inicio.proximo
+                
+                while aux:
+                    
+                    if aux.dado == valor:
+                        
+                        ant.proximo = aux.proximo
+                        
+                        self.tamanho -= 1
+                        
+                        break
+                    
+                    else:
+                        ant = aux
+                        
+                        aux = aux.proximo
+
+        if tamInicial == self.tamanho:
+            
+            print("Valor não encontrado.")
+
+        self.imprimir()
                     
                     
 
