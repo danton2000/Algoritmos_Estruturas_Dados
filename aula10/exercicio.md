@@ -1,26 +1,26 @@
 # Construa o algoritmo em Python de uma lista duplamente encadeada que possui uma função para inserir elementos em ordem alfabética, uma função para imprimir os elementos da lista e uma função para imprimir os elementos na ordem inversa.
 
-'''
+"""
 class Node:
-    """
-    Classe que representa um nó da lista duplamente encadeada.
-    """
+    
+    # Classe que representa um nó da lista duplamente encadeada.
+    
     def __init__(self, data):
         self.data = data
         self.prev = None
         self.next = None
 
 class DoublyLinkedList:
-    """
-    Classe que representa a lista duplamente encadeada.
-    """
+    
+    # Classe que representa a lista duplamente encadeada.
+    
     def __init__(self):
         self.head = None
 
     def insert_in_order(self, data):
-        """
-        Insere um novo nó na lista em ordem alfabética.
-        """
+        
+        # Insere um novo nó na lista em ordem alfabética.
+        
         new_node = Node(data)
         
         # Se a lista está vazia
@@ -49,9 +49,9 @@ class DoublyLinkedList:
         current.next = new_node
 
     def print_list(self):
-        """
-        Imprime os elementos da lista na ordem.
-        """
+        
+        # Imprime os elementos da lista na ordem.
+        
         current = self.head
         while current:
             print(current.data, end=' ')
@@ -59,9 +59,9 @@ class DoublyLinkedList:
         print()  # Nova linha após a impressão
 
     def print_list_reverse(self):
-        """
-        Imprime os elementos da lista na ordem inversa.
-        """
+        
+        # Imprime os elementos da lista na ordem inversa.
+        
         current = self.head
         if not current:
             return
@@ -89,7 +89,7 @@ if __name__ == "__main__":
     
     print("Elementos na ordem inversa:")
     dll.print_list_reverse()
-'''
+"""
 
 # Explicação do Código
 ## Classe Node:
