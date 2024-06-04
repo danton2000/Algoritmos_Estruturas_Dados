@@ -3,7 +3,7 @@
 """
 class Node:
     
-    # Classe que representa um nó da lista duplamente encadeada.
+    Classe que representa um nó da lista duplamente encadeada.
     
     def __init__(self, data):
         self.data = data
@@ -76,7 +76,7 @@ class DoublyLinkedList:
             current = current.prev
         print()  # Nova linha após a impressão
 
-# Exemplo de uso:
+Exemplo de uso:
 if __name__ == "__main__":
     dll = DoublyLinkedList()
     elementos = ["banana", "maçã", "laranja", "uva", "abacaxi"]
