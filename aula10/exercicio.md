@@ -1,6 +1,6 @@
 # Construa o algoritmo em Python de uma lista duplamente encadeada que possui uma função para inserir elementos em ordem alfabética, uma função para imprimir os elementos da lista e uma função para imprimir os elementos na ordem inversa.
 
-"""
+
 class Node:
     
     Classe que representa um nó da lista duplamente encadeada.
@@ -89,7 +89,7 @@ if __name__ == "__main__":
     
     print("Elementos na ordem inversa:")
     dll.print_list_reverse()
-"""
+
 
 # Explicação do Código
 ## Classe Node:
