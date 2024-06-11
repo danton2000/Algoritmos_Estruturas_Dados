@@ -172,7 +172,9 @@ class ListaDuplamante:
                         valor_auxiliar = valor_auxiliar.proximo
 
                 if tamanho_inicial == self.tamanho:
-                    pass
+                    print( "Valor não encontrado")
+                    
+                self.imprimir()
 
             
 
