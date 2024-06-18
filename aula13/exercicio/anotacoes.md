@@ -1,0 +1,1 @@
+# Construa agora um algoritmo para implementação de um Pilha de Livros. Lembrando que na Pilha o último elemento adicionado, será o primeiro elemento removido.
