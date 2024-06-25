@@ -9,3 +9,5 @@ apartamentos na fila, retirar apartamentos informando o número da vaga que este
 3) O condomínio tem apenas 10 vagas de garagem. Então, no monento que o décimo primeiro apartamento for cadastrado, este apartamento deve ir para a fila de espera. Os apartamento que tem vaga de garagem, devem ficar na lista encadeada de apartamento com vaga, ordenados pelo número da vaga
 
 OBS: Classe Apartamento, precisa verificar o numero de vagas, para adicionar o apto na lista encadeada ou para a fila.
+
+# A lista encadeada pode atribuir o valor da vaga ou remover/alerta ou joga na fila
