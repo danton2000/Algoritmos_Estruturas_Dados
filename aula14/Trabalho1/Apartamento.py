@@ -27,9 +27,11 @@ class Apartamento:
         self.numero_apartamento = numero_apartamento
 
         # Utilizando um metodo de classe para verifica sem tem vaga disponivel
-        self.vaga_garagem = self.verificaVagasGaragem(vaga_garagem)
+        self.vaga_garagem = vaga_garagem
 
         self.torre = torre
+
+        self.verificaVagasGaragem()
 
         Apartamento.id_apartamento += 1
 
@@ -44,24 +46,22 @@ class Apartamento:
 
             print(f"Id Apto: {apto.id_apartamento} - Numero do Apto: {apto.numero_apartamento} - Vaga Garagem: {apto.vaga_garagem} - Torre: {apto.torre.nome_torre}")
 
-    def verificaVagasGaragem(self, vaga_garagem):
+        # Listando os numeros de vagas
+        Apartamento.lista_encadeada.imprimir()
+        
+    def verificaVagasGaragem(self):
 
-        if vaga_garagem >= Apartamento.vagas_condominio:
+        # 3 limite de vagas
+        if  Apartamento.vagas_condominio > 3:
 
-            resultado = 0
+            pass
 
             # Adicionar na fila
         else:
-            resultado = vaga_garagem
-
-            Apartamento.vagas_condominio -= vaga_garagem
+            Apartamento.vagas_condominio -= 1
 
             # Adicionar na lista encadeada
             Apartamento.lista_encadeada.adicionar(self)
-
-            Apartamento.lista_encadeada.imprimir()
-
-        return resultado
 
     def listaEncadeada(self, vaga_garagem):
 

@@ -7,19 +7,49 @@ class ListaEncadeada:
         self.tamanho = 0
         
     def adicionar(self, apartamento):
-        #Adicionando pelo momento de chegada
-        
-        #guardando em memoria e a referencia(instancia) do objeto
         nodo = apartamento
         
-        #Se lista não está vazia
-        if self.inicio != None:
-            nodo.proximo = self.inicio
-        
-        # O atributo inicio recebe o objeto nodo contendo o dado atual e o proximo dado
-        self.inicio = nodo
-        
-        # incremetando o tamanho + 1
+        if self.inicio == None:
+            #Lista vazia
+            self.inicio = nodo
+            
+        else:
+            #Verifica se o vaga_garagem que acabou de chegar é menor que o inicio da lista
+            if nodo.vaga_garagem > self.inicio.vaga_garagem:
+                
+                nodo.proximo = self.inicio
+                
+                self.inicio = nodo
+                
+            else:
+                # Percorrer todos os elementos da lista para colocar na posição 
+                
+                ant = self.inicio
+                
+                aux = self.inicio.proximo
+                
+                while aux:
+                    
+                    if nodo.vaga_garagem > aux.vaga_garagem:
+                        
+                        nodo.proximo = ant.proximo
+                        
+                        ant.proximo = nodo
+                        
+                        #para laço
+                        break 
+                    else:
+                        
+                        ant = aux
+                        
+                        aux = aux.proximo
+                    
+                
+                #verificar se o aux é None já percorreu tudo
+                if aux == None and nodo.vaga_garagem >= ant.vaga_garagem:
+                    
+                    ant.proximo = nodo
+                    
         self.tamanho += 1
         
     def remover(self):
@@ -50,7 +80,7 @@ class ListaEncadeada:
             
             while var_aux:
                 #imprimindo e indo para o proximo
-                print(var_aux)
+                print(f"Numero da vaga: {var_aux.vaga_garagem}")
                 
                 var_aux = var_aux.proximo  
             

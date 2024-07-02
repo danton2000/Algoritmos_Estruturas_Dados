@@ -38,9 +38,12 @@ while True:
         # Pegando a torre selecionada pelo indice na lista de torres(lista de objetos de torres)
         torre_selecionada = Torre.lista_torres[index_torre]
 
+        #Numero da vaga
+        vaga_garagem = int(input("Digite o numero da Vaga:"))
+
         apartamento.cadastrarApartamento(
             numero_apartamento = 103,
-            vaga_garagem = 2,
+            vaga_garagem = vaga_garagem,
             torre = torre_selecionada
         )
 
