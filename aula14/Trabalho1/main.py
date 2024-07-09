@@ -8,7 +8,9 @@ while True:
     print("2 - Listar Torres")
     print("3 - Adicionar um Apartamento")
     print("4 - Listar Apartamentos")
-    print("5 - Mostrar Vagas Disponiveis")
+    print("5 - Listar Vagas")
+    print("6 - Listar Fila")
+    print("7 - Mostrar Vagas Disponiveis")
     
     opcao = input("Digite uma opção: ")
 
@@ -53,6 +55,12 @@ while True:
         apartamento.listarApartamentos()
 
     elif opcao == "5":
+        apartamento.listarVagas()
+
+    elif opcao == "6":
+        apartamento.listarFila()
+
+    elif opcao == "7":
         Apartamento.mostrarVagasCondominio()
         
     else:

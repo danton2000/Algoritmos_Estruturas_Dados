@@ -1,4 +1,8 @@
+# Importando a classe ListaEncadeada
 from ListaEncadeada import ListaEncadeada
+
+# Importando a classe Fila
+from Fila import Fila
 
 class Apartamento:
 
@@ -11,6 +15,8 @@ class Apartamento:
     lista_apartamentos = []
 
     lista_encadeada = ListaEncadeada()
+
+    fila = Fila()
 
     def __init__(self):
         
@@ -46,41 +52,27 @@ class Apartamento:
 
             print(f"Id Apto: {apto.id_apartamento} - Numero do Apto: {apto.numero_apartamento} - Vaga Garagem: {apto.vaga_garagem} - Torre: {apto.torre.nome_torre}")
 
+    def listarVagas(self):
         # Listando os numeros de vagas
         Apartamento.lista_encadeada.imprimir()
-        
+
+    def listarFila(self):
+        # Listando a fila
+        Apartamento.fila.imprimir()
+
     def verificaVagasGaragem(self):
 
         # 3 limite de vagas
-        if  Apartamento.vagas_condominio > 3:
+        if  Apartamento.vagas_condominio == 0:
 
-            pass
+            Apartamento.fila.adicionarNaFila(self)
 
             # Adicionar na fila
         else:
+            # Adicionar na lista encadeada
+            Apartamento.lista_encadeada.adicionar(self)
+
             Apartamento.vagas_condominio -= 1
-
-            # Adicionar na lista encadeada
-            Apartamento.lista_encadeada.adicionar(self)
-
-    def listaEncadeada(self, vaga_garagem):
-
-        if vaga_garagem >= Apartamento.vagas_condominio:
-
-            resultado = 0
-
-            # Adicionar na fila
-        else:
-            resultado = vaga_garagem
-
-            Apartamento.vagas_condominio -= vaga_garagem
-
-            # Adicionar na lista encadeada
-            Apartamento.lista_encadeada.adicionar(self)
-
-            Apartamento.lista_encadeada.imprimir()
-
-        return resultado
 
     def mostrarVagasCondominio():
         

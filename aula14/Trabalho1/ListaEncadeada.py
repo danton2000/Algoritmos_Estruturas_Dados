@@ -15,7 +15,7 @@ class ListaEncadeada:
             
         else:
             #Verifica se o vaga_garagem que acabou de chegar é menor que o inicio da lista
-            if nodo.vaga_garagem > self.inicio.vaga_garagem:
+            if nodo.vaga_garagem < self.inicio.vaga_garagem:
                 
                 nodo.proximo = self.inicio
                 
@@ -30,7 +30,7 @@ class ListaEncadeada:
                 
                 while aux:
                     
-                    if nodo.vaga_garagem > aux.vaga_garagem:
+                    if nodo.vaga_garagem < aux.vaga_garagem:
                         
                         nodo.proximo = ant.proximo
                         
@@ -50,6 +50,8 @@ class ListaEncadeada:
                     
                     ant.proximo = nodo
                     
+            self.tamanho += 1
+              
         self.tamanho += 1
         
     def remover(self):
@@ -60,8 +62,6 @@ class ListaEncadeada:
             self.inicio = self.inicio.proximo
             
             self.tamanho -= 1
-            
-        self.imprimir()
           
     def imprimir(self):
         
