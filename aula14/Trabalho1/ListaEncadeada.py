@@ -54,15 +54,39 @@ class ListaEncadeada:
               
         self.tamanho += 1
         
-    def remover(self):
+    def remover(self, numero_vaga):
         
-        #verificar se lista não está vazia
+        tamInicial = self.tamanho
         if self.inicio != None:
-            #Não está vazia
-            self.inicio = self.inicio.proximo
-            
-            self.tamanho -= 1
-          
+
+            #Lista contendo só um elemente e este é igual ao numero_vaga
+            if self.inicio.proximo == None and self.inicio.numero_apartamento == numero_vaga:
+                self.inicio = None
+                self.tamanho = 0
+
+            #Lista contendo vários elementos e o numero_vaga é igual ao primeiro
+            elif self.inicio.numero_apartamento == numero_vaga:
+                self.inicio = self.inicio.proximo
+                self.tamanho -= 1
+
+            # Lista com vários elementos e o numero_vaga não está no primeiro
+            else:
+                ant = self.inicio
+                aux = self.inicio.proximo
+                while aux:
+                    if aux.numero_apartamento == numero_vaga:
+                        ant.proximo = aux.proximo
+                        self.tamanho -= 1
+                        break
+                    else:
+                        ant = aux
+                        aux = aux.proximo
+
+        if tamInicial == self.tamanho:
+            print( "Valor não encontrado")
+
+        print(self.inicio.numero_apartamento) 
+
     def imprimir(self):
         
         print("---------------------------------------------")

@@ -10,7 +10,8 @@ while True:
     print("4 - Listar Apartamentos")
     print("5 - Listar Vagas")
     print("6 - Listar Fila")
-    print("7 - Mostrar Vagas Disponiveis")
+    print("7 - Liberar Vagas")
+    print("8 - Mostrar Vagas Disponiveis")
     
     opcao = input("Digite uma opção: ")
 
@@ -41,11 +42,11 @@ while True:
         torre_selecionada = Torre.lista_torres[index_torre]
 
         #Numero da vaga
-        vaga_garagem = int(input("Digite o numero da Vaga:"))
+        numero_vaga = int(input("Digite o numero da Vaga:"))
 
         apartamento.cadastrarApartamento(
             numero_apartamento = 103,
-            vaga_garagem = vaga_garagem,
+            vaga_garagem = numero_vaga,
             torre = torre_selecionada
         )
 
@@ -55,13 +56,18 @@ while True:
         apartamento.listarApartamentos()
 
     elif opcao == "5":
-        apartamento.listarVagas()
+        apartamento.listarVagasApartamento()
 
     elif opcao == "6":
-        apartamento.listarFila()
+        apartamento.listarFilaEspera()
 
     elif opcao == "7":
-        Apartamento.mostrarVagasCondominio()
+        numero_vaga = int(input("Digite o numero da vaga:"))
+
+        apartamento.liberarVaga(numero_vaga)
+
+    elif opcao == "8":
+        Apartamento.listarVagasDisponiveis()
         
     else:
         print("Opção invalida!")

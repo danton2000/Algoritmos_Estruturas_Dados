@@ -8,7 +8,7 @@ apartamentos na fila, retirar apartamentos informando o número da vaga que este
 
 3) O condomínio tem apenas 10 vagas de garagem. Então, no monento que o décimo primeiro apartamento for cadastrado, este apartamento deve ir para a fila de espera. Os apartamento que tem vaga de garagem, devem ficar na lista encadeada de apartamento com vaga, ordenados pelo número da vaga. - ok
 
-4) Construa um menu que permita ao usuário escolher as opções de:
+4) Construa um menu que permita ao wusuário escolher as opções de:
 
     a) Cadastrar apartamento -> Quando o apartamento for cadastrado, se tiver vaga de garagem disponível, ele deve ir para a lista encadeada, ordenada pelo número da vaga. Se não tiver mais vagas, o apartamento deve ir para a fila de apartamentos que estão esperando a vaga. - ok
 

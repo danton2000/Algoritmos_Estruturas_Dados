@@ -52,11 +52,11 @@ class Apartamento:
 
             print(f"Id Apto: {apto.id_apartamento} - Numero do Apto: {apto.numero_apartamento} - Vaga Garagem: {apto.vaga_garagem} - Torre: {apto.torre.nome_torre}")
 
-    def listarVagas(self):
+    def listarVagasApartamento(self):
         # Listando os numeros de vagas
         Apartamento.lista_encadeada.imprimir()
 
-    def listarFila(self):
+    def listarFilaEspera(self):
         # Listando a fila
         Apartamento.fila.imprimir()
 
@@ -74,7 +74,21 @@ class Apartamento:
 
             Apartamento.vagas_condominio -= 1
 
-    def mostrarVagasCondominio():
+    def liberarVaga(self, numero_vaga):
+
+        for apartamento in Apartamento.lista_apartamentos:
+
+            #Procurar o objeto que vai sair da lista e ir para a fila
+            if apartamento.vaga_garagem == numero_vaga:
+                apartamento_escolhido = apartamento
+
+                #print("apartamento escolhido", apartamento)
+        
+        Apartamento.lista_encadeada.remover(numero_vaga)
+
+        
+        
+    def listarVagasDisponiveis():
         
         print(Apartamento.vagas_condominio)
             
