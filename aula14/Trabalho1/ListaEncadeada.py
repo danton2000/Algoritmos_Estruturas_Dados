@@ -9,6 +9,8 @@ class ListaEncadeada:
     def adicionar(self, apartamento):
         nodo = apartamento
         
+        print(nodo.id_apartamento)
+        
         if self.inicio == None:
             #Lista vazia
             self.inicio = nodo
@@ -49,43 +51,39 @@ class ListaEncadeada:
                 if aux == None and nodo.vaga_garagem >= ant.vaga_garagem:
                     
                     ant.proximo = nodo
-                    
-            self.tamanho += 1
               
         self.tamanho += 1
-        
-    def remover(self, numero_vaga):
-        
+    
+    def remover(self, vaga_garagem):
         tamInicial = self.tamanho
         if self.inicio != None:
 
-            #Lista contendo só um elemente e este é igual ao numero_vaga
-            if self.inicio.proximo == None and self.inicio.numero_apartamento == numero_vaga:
+            #Lista contendo só um elemente e este é igual ao vaga_garagem
+            if self.inicio.proximo == None and self.inicio.vaga_garagem == vaga_garagem:
                 self.inicio = None
                 self.tamanho = 0
 
-            #Lista contendo vários elementos e o numero_vaga é igual ao primeiro
-            elif self.inicio.numero_apartamento == numero_vaga:
+            #Lista contendo vários elementos e o vaga_garagem é igual ao primeiro
+            elif self.inicio.vaga_garagem == vaga_garagem:
                 self.inicio = self.inicio.proximo
                 self.tamanho -= 1
 
-            # Lista com vários elementos e o numero_vaga não está no primeiro
+            # Lista com vários elementos e o vaga_garagem não está no primeiro
             else:
                 ant = self.inicio
                 aux = self.inicio.proximo
                 while aux:
-                    if aux.numero_apartamento == numero_vaga:
+                    if aux.vaga_garagem == vaga_garagem:
                         ant.proximo = aux.proximo
                         self.tamanho -= 1
                         break
                     else:
                         ant = aux
                         aux = aux.proximo
-
         if tamInicial == self.tamanho:
             print( "Valor não encontrado")
 
-        print(self.inicio.numero_apartamento) 
+        print("Vaga Liberada!")
 
     def imprimir(self):
         

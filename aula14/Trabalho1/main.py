@@ -42,7 +42,7 @@ while True:
         torre_selecionada = Torre.lista_torres[index_torre]
 
         #Numero da vaga
-        numero_vaga = int(input("Digite o numero da Vaga:"))
+        numero_vaga = int(input("Digite o numero da Vaga: "))
 
         apartamento.cadastrarApartamento(
             numero_apartamento = 103,
@@ -62,7 +62,7 @@ while True:
         apartamento.listarFilaEspera()
 
     elif opcao == "7":
-        numero_vaga = int(input("Digite o numero da vaga:"))
+        numero_vaga = int(input("Digite o numero da vaga: "))
 
         apartamento.liberarVaga(numero_vaga)
 

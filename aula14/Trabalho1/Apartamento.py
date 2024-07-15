@@ -10,7 +10,7 @@ class Apartamento:
     id_apartamento = 1
 
     #Vagas do condominio
-    vagas_condominio = 3
+    vagas_condominio = 1
 
     lista_apartamentos = []
 
@@ -76,18 +76,24 @@ class Apartamento:
 
     def liberarVaga(self, numero_vaga):
 
-        for apartamento in Apartamento.lista_apartamentos:
-
-            #Procurar o objeto que vai sair da lista e ir para a fila
-            if apartamento.vaga_garagem == numero_vaga:
-                apartamento_escolhido = apartamento
-
-                #print("apartamento escolhido", apartamento)
-        
+        #Removendo da lista encadeada(apartamentos que estão utilizando as vagas)
         Apartamento.lista_encadeada.remover(numero_vaga)
-
         
-        
+        # Por que eu tive que fazer esse loop?(duvida)
+        #Procurando o obj do apartamento pelo numero_vaga para a dicionar na fila de espera
+        for apto in Apartamento.lista_apartamentos:
+            
+            if apto.vaga_garagem == numero_vaga:
+                
+                #Capturando o apto que saiu da fila para adicionar na lista encadeada
+                apto_lista_encadeada = Apartamento.fila.remover()
+                
+                #print("apto que vai sair da fila e ir para a lista encadeada", apto_lista_encadeada.id_apartamento)
+                
+                Apartamento.lista_encadeada.adicionar(apto_lista_encadeada) 
+                
+                Apartamento.fila.adicionarNaFila(apto)
+            
     def listarVagasDisponiveis():
         
         print(Apartamento.vagas_condominio)
