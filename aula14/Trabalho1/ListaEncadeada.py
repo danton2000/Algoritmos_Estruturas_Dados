@@ -9,7 +9,7 @@ class ListaEncadeada:
     def adicionar(self, apartamento):
         nodo = apartamento
         
-        print(nodo.id_apartamento)
+        # print(nodo.id_apartamento)
         
         if self.inicio == None:
             #Lista vazia
@@ -96,7 +96,7 @@ class ListaEncadeada:
             
         else:
             
-            print(f"Lista Encadeada com {self.tamanho} elementos")
+            print(f"Lista Encadeada com {self.tamanho} Apartamentos com Vagas:")
             
             var_aux = self.inicio
             

@@ -18,6 +18,7 @@ while True:
     # Instanciando a classe Torre
     torre = Torre()
 
+    # Instanciando a classe Apartamento
     apartamento = Apartamento()
 
     if opcao == "1":

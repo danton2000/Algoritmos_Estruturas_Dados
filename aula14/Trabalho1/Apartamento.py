@@ -1,8 +1,8 @@
 # Importando a classe ListaEncadeada
 from ListaEncadeada import ListaEncadeada
 
-# Importando a classe Fila
-from Fila import Fila
+# Importando a classe FilaEspera
+from FilaEspera import FilaEspera
 
 class Apartamento:
 
@@ -10,13 +10,13 @@ class Apartamento:
     id_apartamento = 1
 
     #Vagas do condominio
-    vagas_condominio = 1
+    vagas_condominio = 2
 
     lista_apartamentos = []
 
     lista_encadeada = ListaEncadeada()
 
-    fila = Fila()
+    fila = FilaEspera()
 
     def __init__(self):
         
@@ -80,18 +80,21 @@ class Apartamento:
         Apartamento.lista_encadeada.remover(numero_vaga)
         
         # Por que eu tive que fazer esse loop?(duvida)
-        #Procurando o obj do apartamento pelo numero_vaga para a dicionar na fila de espera
+        #Procurando o obj do apartamento pelo numero_vaga para adicionar na fila de espera
         for apto in Apartamento.lista_apartamentos:
             
             if apto.vaga_garagem == numero_vaga:
                 
                 #Capturando o apto que saiu da fila para adicionar na lista encadeada
                 apto_lista_encadeada = Apartamento.fila.remover()
-                
+
                 #print("apto que vai sair da fila e ir para a lista encadeada", apto_lista_encadeada.id_apartamento)
                 
                 Apartamento.lista_encadeada.adicionar(apto_lista_encadeada) 
                 
+                #Retirando a "encadeamento" desse apto e colocando na fila(sozinho)
+                apto.proximo = None
+
                 Apartamento.fila.adicionarNaFila(apto)
             
     def listarVagasDisponiveis():

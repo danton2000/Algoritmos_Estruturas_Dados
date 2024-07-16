@@ -1,8 +1,4 @@
-from Apartamento import Apartamento
-
-#Apartamento seria o nó?
-
-class Fila:
+class FilaEspera:
 
     def __init__(self):
         
@@ -12,10 +8,12 @@ class Fila:
 
         self.tamanho = 0
 
-    def adicionarNaFila(self, valor):
+    def adicionarNaFila(self, apartamento):
 
         # Nó guardado em memoria
-        nodo = No(valor)
+        nodo = apartamento
+
+        print(nodo.id_apartamento)
 
         if self.inicio == None:
 
@@ -29,8 +27,6 @@ class Fila:
 
         self.tamanho += 1
 
-        self.imprimir()
-    
     def imprimir(self):
         
         print("---------------------------------------------")
@@ -42,7 +38,7 @@ class Fila:
             
         else:
             
-            print(f"Fila com {self.tamanho} elementos")
+            print(f"Fila com {self.tamanho} Apartamento")
             
             valor_auxiliar = self.inicio
 
@@ -51,13 +47,15 @@ class Fila:
             while valor_auxiliar:
                 #imprimindo e indo para o proximo
 
-                texto += valor_auxiliar.dado + " - "
+                texto += "Id Apto: " + str(valor_auxiliar.id_apartamento) + " | " + "Vaga: " + str(valor_auxiliar.vaga_garagem) + " - "
 
                 valor_auxiliar = valor_auxiliar.proximo
 
             print(texto)
 
     def remover(self):
+        
+        apto = self.inicio
 
         if self.inicio:
 
@@ -68,8 +66,8 @@ class Fila:
                 self.fim = None
             
             self.tamanho -= 1
-        
-        self.imprimir()
+            
+        return apto
 
             
 
