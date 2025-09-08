@@ -39,30 +39,40 @@ class ListaEncadeada:
             
         print(" -> ".join(map(str, elementos)))
         
-    def bubble_sort(self):
-        """Ordena a lista encadeada usando Bubble Sort(ordem crescente)."""
-        
+    def selection_sort(self):
+        """
+        Ordena a lista encadeada em ordem crescente usando Selection Sort.
+
+        Estratégia (versão simples que troca valores dentro dos nós):
+        - Para cada posição da lista (nó `i`), encontra o nó com o menor
+          valor entre `i` e o final.
+        - Troca o valor do nó `i` com o valor do nó que contém o mínimo.
+
+        Observações:
+        - Mantemos a simplicidade trocando apenas os valores dos nós em vez
+          de reencadear ponteiros.
+        - Complexidade: O(n^2) no pior caso e no caso médio.
+        """
         if self.inicio is None:
             return
-        
-        trocou = True
-        
-        while trocou:
-            
-            trocou = False
-            
-            atual = self.inicio
-            
-            
-            while atual.proximo:
-                
-                if atual.valor > atual.proximo.valor:
-                    # Troca os valores
-                    atual.valor, atual.proximo.valor = atual.proximo.valor, atual.valor
-                    
-                    trocou = True
-                    
-                atual = atual.proximo
+
+        i = self.inicio
+        # 'i' representa a posição atual que vamos preencher com o menor valor
+        while i:
+            # Encontrar o nó com o menor valor a partir de i
+            menor = i
+            j = i.proximo
+            while j:
+                if j.valor < menor.valor:
+                    menor = j
+                j = j.proximo
+
+            # Se menor for diferente de i, troca os valores
+            if menor is not i:
+                i.valor, menor.valor = menor.valor, i.valor
+
+            # Avança para a próxima posição
+            i = i.proximo
 
 # --- Exemplo de uso das classes ---
 if __name__ == "__main__":
@@ -79,8 +89,8 @@ if __name__ == "__main__":
     
     print("Lista original")
     lista.exibir()
-    
-    print("Lista ordenando com o Bubble Sort")
-    lista.bubble_sort()
-    
+
+    print("Lista ordenando com o Selection Sort")
+    lista.selection_sort()
+
     lista.exibir()
