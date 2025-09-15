@@ -31,15 +31,15 @@ class Lista:
             # Lista vazia: head e tail apontam para o novo nó
             self.head = novo_no
             self.tail = novo_no
-            print(f"inicio da lista: {self.head.valor}, fim da lista: {self.tail.valor}")
+            #print(f"inicio da lista: {self.head.valor}, fim da lista: {self.tail.valor}")
         else:
             # Anexa no final e atualiza ponteiros prev/next
             self.tail.next = novo_no
             novo_no.prev = self.tail
-            print(f"proximo valor: {self.tail.next.valor}, valor anterior:{novo_no.prev.valor}")
+            #print(f"proximo valor: {self.tail.next.valor}, valor anterior:{novo_no.prev.valor}")
 
             self.tail = novo_no
-            print(f"fim da lista: {self.tail.valor}")
+            #print(f"fim da lista: {self.tail.valor}")
 
     def imprime_lista(self):
         """Percorre do inicio ao fim imprimindo os valores."""
@@ -65,6 +65,9 @@ class Lista:
 
         # Começa no segundo elemento (o primeiro já está "ordenado").
         atual = self.head.next
+
+        print(self.head.next.valor)
+        exit()
 
         # Para cada elemento, deslocamos valores maiores para a direita
         # e inserimos o valor chave na posição correta.
