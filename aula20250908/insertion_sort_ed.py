@@ -1,10 +1,23 @@
+"""
+Exemplo de Insertion Sort em lista duplamente encadeada (com muitos prints
+de debug para fins didáticos).
+
+Explicação leiga:
+- Insertion Sort constrói uma lista ordenada elemento a elemento. Para cada
+  novo elemento, deslocamos os elementos maiores para a direita e colocamos
+  o novo elemento na posição correta.
+"""
+
 import time
+
 
 class Node:
     def __init__(self, numero):
+        # Cada nó guarda um valor e referências para o anterior e o próximo.
         self.valor = numero
         self.next = None
         self.prev = None
+
 
 class Lista:
     def __init__(self):
@@ -12,22 +25,24 @@ class Lista:
         self.tail = None
 
     def add_valor(self, valor):
+        """Adiciona valor ao final; imprime passos para estudo."""
         novo_no = Node(valor)
         if self.head is None:
-            self.head = novo_no #inicio da lista?
-            self.tail = novo_no #fim da lista?
+            # Lista vazia: head e tail apontam para o novo nó
+            self.head = novo_no
+            self.tail = novo_no
             print(f"inicio da lista: {self.head.valor}, fim da lista: {self.tail.valor}")
-            
         else:
-            self.tail.next = novo_no # colocando o como proximo valor, no fim da lista
-            novo_no.prev = self.tail # colocando como anterior o valor do fim da lista
+            # Anexa no final e atualiza ponteiros prev/next
+            self.tail.next = novo_no
+            novo_no.prev = self.tail
             print(f"proximo valor: {self.tail.next.valor}, valor anterior:{novo_no.prev.valor}")
 
-            self.tail = novo_no # fim da lista vai ser o valor(nó) atual
+            self.tail = novo_no
             print(f"fim da lista: {self.tail.valor}")
-            #exit()
 
     def imprime_lista(self):
+        """Percorre do inicio ao fim imprimindo os valores."""
         if self.head is None:
             print("A lista está vazia.")
         else:
@@ -38,61 +53,49 @@ class Lista:
 
     def ordena_insertion(self):
         """
-        Constrói a lista ordenada uma entrada por vez. 
-        Ele pega cada elemento e o insere na posição correta em uma lista já ordenada.
+        Faz Insertion Sort movendo valores.
+
+        Observação leiga: imagine que você pega cada elemento e o insere na
+        posição correta entre os já processados, deslocando os maiores para a
+        direita.
         """
 
-        # Verifica se tem elementos para a ordenação
         if self.head is None or self.head.next is None:
-
             return
 
-        # Proximo elemento do inicio da lista 
+        # Começa no segundo elemento (o primeiro já está "ordenado").
         atual = self.head.next
 
-        # Enquanto proximo elemento da lista não for Vazio, ele vai percorrendo
+        # Para cada elemento, deslocamos valores maiores para a direita
+        # e inserimos o valor chave na posição correta.
         while atual is not None:
-            chave = atual.valor # 'proximo' valor
-            mover = atual.prev # valor 'anterior' 
+            chave = atual.valor
+            mover = atual.prev
 
-            print(f"proximo valor: {chave}", f"valor anterior: {mover.valor}")
-
-            # Enquanto valor anteriror não for vazio e valor anteriror for maior que o proximo valor
+            # Move elementos maiores uma posição à frente.
             while mover is not None and mover.valor > chave:
-                
-                print(f"proximo valor antes: {mover.next.valor}")
-                mover.next.valor = mover.valor
-                print(f"proximo valor depois: {mover.next.valor}")
-
-                print(f"valor anterior antes: {mover.valor}")
+                mover.next.valor = mover.valor  # move o valor para a frente
                 mover = mover.prev
-                # pq fica vazio?
-                if mover is None:
-                    print("Esta vazio essa merda")
-                    exit()
-                
+
+            # Se chegamos ao início, atualiza o head; caso contrário, insere
+            # logo após o ponteiro mover.
             if mover is None:
-                print(f"Inicio da lista antes: {self.head.valor}")
-
-                self.head.valor = chave #trocando o inicio da lista pelo proximo valor
-
-                print(f"Inicio da lista depois: {self.head.valor}")
+                self.head.valor = chave
             else:
-                
                 mover.next.valor = chave
 
             atual = atual.next
 
-        print(f"Fim do while: {atual}") # Ele sai do while se o atual for None
 
-lista_desordenada = [8, 3, 5]
-lista = Lista()
-for numero in lista_desordenada:
-    lista.add_valor(numero)
+if __name__ == "__main__":
+    lista_desordenada = [8, 3, 5]
+    lista = Lista()
+    for numero in lista_desordenada:
+        lista.add_valor(numero)
 
-print("Lista Desordenada:")
-lista.imprime_lista()
+    print("Lista Desordenada:")
+    lista.imprime_lista()
 
-print("Lista Ordenada com Insertion Sort:")
-lista.ordena_insertion()
-lista.imprime_lista()
+    print("Lista Ordenada com Insertion Sort:")
+    lista.ordena_insertion()
+    lista.imprime_lista()
