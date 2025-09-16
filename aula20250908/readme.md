@@ -54,3 +54,4 @@ Se quiser, eu posso:
 - Adicionar pequenos testes automáticos para validar os scripts.
 # Entender esses 5 scripts
 ## Explicar para o Sor
+## colocar mais detalhes, como nó, ultimos numeros do endereço da memoria, valores alterados

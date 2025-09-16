@@ -55,7 +55,7 @@ class Lista:
         """
         Faz Insertion Sort movendo valores.
 
-        Observação leiga: imagine que você pega cada elemento e o insere na
+        Observação: imagine que você pega cada elemento e o insere na
         posição correta entre os já processados, deslocando os maiores para a
         direita.
         """
@@ -66,15 +66,16 @@ class Lista:
         # Começa no segundo elemento (o primeiro já está "ordenado").
         atual = self.head.next
 
-        print(self.head.next.valor)
-        exit()
+        # print(self.head.next.valor)
+        # exit()
 
         # Para cada elemento, deslocamos valores maiores para a direita
         # e inserimos o valor chave na posição correta.
         while atual is not None:
             chave = atual.valor
             mover = atual.prev
-
+            print(f"chave: {chave}")
+            print(f"mover: {mover.valor}")
             # Move elementos maiores uma posição à frente.
             while mover is not None and mover.valor > chave:
                 mover.next.valor = mover.valor  # move o valor para a frente
@@ -89,6 +90,9 @@ class Lista:
 
             atual = atual.next
 
+            print("Lista Ordenada com Insert Sort:(tentativas)")
+            lista.imprime_lista()
+
 
 if __name__ == "__main__":
     lista_desordenada = [8, 3, 5]
@@ -101,4 +105,4 @@ if __name__ == "__main__":
 
     print("Lista Ordenada com Insertion Sort:")
     lista.ordena_insertion()
-    lista.imprime_lista()
+    
