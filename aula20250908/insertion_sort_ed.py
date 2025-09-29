@@ -74,6 +74,8 @@ class Lista:
         while atual is not None:
             chave = atual.valor
             mover = atual.prev
+            
+            print(f"objeto{atual}")
             print(f"chave: {chave}")
             print(f"mover: {mover.valor}")
             # Move elementos maiores uma posição à frente.
