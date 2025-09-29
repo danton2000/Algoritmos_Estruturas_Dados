@@ -65,20 +65,34 @@ class Lista:
 
         # Começa no segundo elemento (o primeiro já está "ordenado").
         atual = self.head.next
-
         # print(self.head.next.valor)
         # exit()
 
         # Para cada elemento, deslocamos valores maiores para a direita
         # e inserimos o valor chave na posição correta.
         while atual is not None:
+
+            print(f"inicio lista")
+            print(f"valor: {self.head.valor}")
+            print(f"proximo: {self.head.next.valor}")
+            print(f"anterior: {self.head.prev}")
+
+            print(f"Proximo elemento da lista")
+            print(f"valor: {atual.valor}")
+            print(f"anterior: {atual.prev.valor}")
+        
+            print(f"Fim lista")
+            print(f"valor: {self.tail.valor}")
+            print(f"proximo: {self.tail.next}")
+            print(f"anterior: {self.tail.prev.valor}")
+
+
             chave = atual.valor
             mover = atual.prev
-            
-            print(f"objeto{atual}")
             print(f"chave: {chave}")
             print(f"mover: {mover.valor}")
             # Move elementos maiores uma posição à frente.
+            8 é none? e 8 > 3
             while mover is not None and mover.valor > chave:
                 mover.next.valor = mover.valor  # move o valor para a frente
                 mover = mover.prev
@@ -92,12 +106,30 @@ class Lista:
 
             atual = atual.next
 
+            print(f"inicio lista")
+            print(f"valor: {self.head.valor}")
+            print(f"proximo: {self.head.next.valor}")
+            print(f"anterior: {self.head.prev}")
+
+            print(f"Proximo elemento da lista")
+            print(f"valor: {atual.valor}")
+            print(f"anterior: {atual.prev.valor}")
+
+            print(f"Fim lista")
+            print(f"valor: {self.tail.valor}")
+            print(f"proximo: {self.tail.next}")
+            print(f"anterior: {self.tail.prev.valor}")
+            
+            exit()
+
             print("Lista Ordenada com Insert Sort:(tentativas)")
             lista.imprime_lista()
 
 
+
+
 if __name__ == "__main__":
-    lista_desordenada = [8, 3, 5]
+    lista_desordenada = [8, 3, 5, 9]
     lista = Lista()
     for numero in lista_desordenada:
         lista.add_valor(numero)
