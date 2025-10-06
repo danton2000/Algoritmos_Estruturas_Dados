@@ -92,7 +92,7 @@ class Lista:
             print(f"chave: {chave}")
             print(f"mover: {mover.valor}")
             # Move elementos maiores uma posição à frente.
-            8 é none? e 8 > 3
+            #8 é none? e 8 > 3
             while mover is not None and mover.valor > chave:
                 mover.next.valor = mover.valor  # move o valor para a frente
                 mover = mover.prev

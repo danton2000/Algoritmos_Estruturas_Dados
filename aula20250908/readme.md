@@ -34,6 +34,28 @@ Arquivos e objetivos:
   - Objetivo: estudar divisão (particionamento) em torno de um pivô e ordenar
     recursivamente as partes.
 
+- `Radix_Sort.py`
+
+  - O que faz: implementa o Radix Sort usando uma estrutura de lista encadeada. O
+  script converte a lista encadeada para uma lista normal para aplicar o
+  Counting Sort por dígito (unidade, dezena, centena...), reconstruindo a lista
+  encadeada a cada passagem.
+
+  - Objetivo: demonstrar um algoritmo de ordenação por distribuição (não por
+  comparação) que é eficiente quando os números têm tamanho limitado (por
+  exemplo, números inteiros com poucas casas). É útil para mostrar como dividir
+  o problema por dígitos e usar um Counting Sort estável para ordenar por cada
+  posição decimal.
+
+  - Observação:
+    - O algoritmo no script converte entre lista encadeada e lista Python para
+    simplificar a implementação; isso facilita a compreensão, mas, em termos de
+    desempenho prático, a conversão tem custo extra.
+    - Radix Sort é eficiente quando os valores têm faixa limitada e quando o
+    custo por dígito (k) é pequeno — a complexidade típica é O(n * k).
+    - O script inclui um exemplo fixo (uma pequena "base de sorteios") para
+    demonstrar o funcionamento e imprimir listas ordenadas por concurso.
+
 Como executar um script (exemplo):
 
 ```bash
@@ -55,3 +77,5 @@ Se quiser, eu posso:
 # Entender esses 5 scripts
 ## Explicar para o Sor
 ## colocar mais detalhes, como nó, ultimos numeros do endereço da memoria, valores alterados
+
+## mostrar a apresentacao mais o fluxo
