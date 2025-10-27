@@ -1,11 +1,33 @@
-#print([[None for _ in range(8)] for _ in range(8)])
+"""
+Damas - versão didática com comentários práticos em português.
 
-#exit()
+Este arquivo contém:
+- classe Jogada: representa um movimento/captura
+- classe ArvoreDeJogadas: monta uma árvore simples de sequências de jogadas
+- classe TabuleiroDamas: representa o tabuleiro e aplica jogadas
+
+Os comentários inseridos são simples e mostram o que cada parte faz e por
+que (sem alterar a lógica original).
+"""
+
+
 class Jogada:
+    """Representa uma jogada (origem -> destino) e seu tipo.
+
+    Atributos:
+    - origem: (linha, coluna)
+    - destino: (linha, coluna)
+    - tipo: 'movimento' ou 'captura'
+    - filho_esquerdo / filho_direito: links para construir sequência na árvore
+    """
+
     def __init__(self, origem: tuple, destino: tuple, tipo: str):
+        # salva coordenadas de origem e destino
         self.origem = origem
         self.destino = destino
+        # tipo de jogada (movimento simples ou captura de peça adversária)
         self.tipo = tipo  # 'movimento' ou 'captura'
+        # ponteiros para montar árvore de jogadas (convenção do código)
         self.filho_esquerdo = None
         self.filho_direito = None
 
@@ -24,18 +46,23 @@ class ArvoreDeJogadas:
             self._inserir(self.raiz, nova_jogada)
 
     def _inserir(self, atual: Jogada, nova_jogada: Jogada):
+        # verifica se a nova jogada continua a sequência (destino -> origem)
         if atual.destino == nova_jogada.origem:
+            # se for movimento, tenta encaixar no filho_esquerdo
             if nova_jogada.tipo == 'movimento':
                 if atual.filho_esquerdo is None:
                     atual.filho_esquerdo = nova_jogada
                 else:
+                    # já existe um filho à esquerda: tenta inserir recursivamente
                     self._inserir(atual.filho_esquerdo, nova_jogada)
+            # se for captura, usa o filho_direito
             elif nova_jogada.tipo == 'captura':
                 if atual.filho_direito is None:
                     atual.filho_direito = nova_jogada
                 else:
                     self._inserir(atual.filho_direito, nova_jogada)
         else:
+            # se não se encaixa neste nó, tenta nas subárvores esquerda e direita
             if atual.filho_esquerdo:
                 self._inserir(atual.filho_esquerdo, nova_jogada)
             if atual.filho_direito:
@@ -45,6 +72,7 @@ class ArvoreDeJogadas:
         def _in_ordem(no):
             if no:
                 _in_ordem(no.filho_esquerdo)
+                # imprime tipo (MAIÚSCULO) e a movimentação
                 print(f"{no.tipo.upper()}: {no.origem} → {no.destino}")
                 _in_ordem(no.filho_direito)
         _in_ordem(self.raiz)
@@ -69,6 +97,7 @@ class ArvoreDeJogadas:
         caminho = []
         atual = self.raiz
         while atual:
+            # monta lista assumindo que o caminho agressivo é seguir à direita
             caminho.append(f"{atual.tipo.upper()}: {atual.origem} → {atual.destino}")
             atual = atual.filho_direito
         for passo in caminho:
@@ -104,6 +133,7 @@ class TabuleiroDamas:
         for i, linha in enumerate(self.tabuleiro):
             linha_str = f" {i}|"
             for casa in linha:
+                # mostra a peça: P para preta, B para branca, ou espaço vazio
                 if casa == 'P':
                     linha_str += " P |"
                 elif casa == 'B':
@@ -120,10 +150,12 @@ class TabuleiroDamas:
             peca = self.tabuleiro[origem_linha][origem_coluna]
 
             if peca is None:
+                # não existe peça na casa de origem
                 print(f" Jogada inválida: não há peça em {jogada.origem}")
                 return
 
             if peca != self.turno:
+                # tentando mover peça do outro jogador
                 print(f" Jogada inválida: é o turno de {self.turno}, mas tentou mover {peca}")
                 return
 
@@ -134,6 +166,7 @@ class TabuleiroDamas:
                 adversaria = self.tabuleiro[meio_linha][meio_coluna]
 
                 if adversaria is None or adversaria == peca:
+                    # sem peça adversária no meio -> captura inválida
                     print(f" Captura inválida: sem adversário em {(meio_linha, meio_coluna)}")
                     return
 
@@ -163,6 +196,7 @@ class TabuleiroDamas:
         peca = self.tabuleiro[origem_linha][origem_coluna]
 
         if peca is None:
+            # validação: origem sem peça
             print(f"Jogada inválida: não há peça em {jogada.origem}")
             return
 
@@ -176,6 +210,7 @@ class TabuleiroDamas:
             adversaria = self.tabuleiro[meio_linha][meio_coluna]
 
             if adversaria is None or adversaria == peca:
+                # captura inválida sem peça adversária
                 print(f"Captura inválida: sem adversário em {(meio_linha, meio_coluna)}")
                 return
 
@@ -221,7 +256,6 @@ tabuleiro = TabuleiroDamas()
 
 # Exibindo de forma formata da o tabuleiro em seu inicio
 tabuleiro.exibir()
-# até aqui blz
 
 # Realizar jogadas, passadas pelo usuário
 tabuleiro.realizar_jogadas(arvore)

@@ -1,96 +1,157 @@
+"""arvore.py
+
+Implementação simples e comentada de uma árvore genérica (cada nó pode
+ter vários filhos). O arquivo substitui versões anteriores confusas e
+coloca comentários práticos e objetivos em português.
+
+Funcionalidade fornecida:
+- criar nós
+- adicionar nós (sob um pai indicado)
+- buscar nó por valor
+- imprimir a árvore em forma hierárquica
+- modo interativo simples e modo demo não interativo
+
+Não usa bibliotecas externas.
+"""
+
+import os
+from typing import Optional
+
+
 class No:
+    """Nó da árvore: guarda um valor e uma lista de filhos."""
+
     def __init__(self, valor):
-        """Cria um nó com um valor e uma lista de filhos."""
+        # valor armazenado no nó (string ou número)
         self.valor = valor
+        # lista de filhos (inicialmente vazia)
         self.filhos = []
 
-    def adicionar_filhos(self, filho):
-        """Adiciona um nó filho a este nó."""
+    def adicionar_filho(self, filho: 'No'):
+        """Adiciona um nó filho ao final da lista de filhos."""
         self.filhos.append(filho)
 
 
 class Arvore:
-    def __init__(self, raiz=None):
-        """Inicializa a árvore com uma raiz opcional."""
+    """Árvore genérica com operações básicas.
+
+    Métodos principais:
+    - vazia(): verifica se há raiz
+    - buscar(valor): encontra nó com o valor
+    - adicionar_no(valor, pai_valor): adiciona nó sob pai
+    - imprimir(): mostra árvore indentada
+    """
+
+    def __init__(self, raiz: Optional[No] = None):
         self.raiz = raiz
 
-    def vazia(self):
-        """Retorna True se a árvore estiver vazia."""
+    def vazia(self) -> bool:
+        """Retorna True se a árvore não tem raiz."""
         return self.raiz is None
 
-    def buscar_no(self, valor):
-        """Busca um nó pelo valor dentro da árvore (busca recursiva)."""
-        if self.raiz is None:
+    def buscar(self, valor) -> Optional[No]:
+        """Busca um nó pelo valor (pré-ordem). Retorna o nó ou None."""
+
+        def _buscar(no: Optional[No]) -> Optional[No]:
+            if no is None:
+                return None
+            if no.valor == valor:
+                return no
+            # procura recursivamente em cada filho
+            for f in no.filhos:
+                res = _buscar(f)
+                if res is not None:
+                    return res
             return None
-        return self._buscar_recursivo(self.raiz, valor)
 
-    def _buscar_recursivo(self, no, valor):
-        """Função auxiliar para busca recursiva."""
-        if no.valor == valor:
-            return no
-        for filho in no.filhos:
-            resultado = self._buscar_recursivo(filho, valor)
-            if resultado:
-                return resultado
-        return None
+        return _buscar(self.raiz)
 
-    def adicionar_no(self, valor, pai=None):
-        """Adiciona um novo nó à árvore."""
-        novo_no = No(valor)
+    def adicionar_no(self, valor, pai_valor: Optional[str] = None) -> No:
+        """Adiciona um novo nó.
 
-        # Caso seja o primeiro nó (raiz)
-        if self.raiz is None:
-            self.raiz = novo_no
-            print(f"Raiz '{valor}' criada com sucesso!")
+        Regras simples:
+        - se a árvore estiver vazia e pai_valor for None -> novo nó vira raiz
+        - se pai_valor for None e árvore não vazia -> anexa ao raiz
+        - se pai_valor informado -> busca o pai e anexa como filho
+        - se pai não existir -> ValueError
+        """
+        novo = No(valor)
+
+        if self.vazia():
+            if pai_valor is not None:
+                # não faz sentido informar pai quando não há raiz
+                raise ValueError('Árvore vazia: não pode informar pai.')
+            self.raiz = novo
+            return novo
+
+        # se não informou pai, anexa ao raiz
+        if pai_valor is None:
+            self.raiz.adicionar_filho(novo)
+            return novo
+
+        pai = self.buscar(pai_valor)
+        if pai is None:
+            raise ValueError(f"Pai '{pai_valor}' não encontrado.")
+        pai.adicionar_filho(novo)
+        return novo
+
+    def imprimir(self) -> None:
+        """Mostra a árvore em modo hierárquico (cada nível com indentação)."""
+
+        def _imprimir(no: Optional[No], nivel: int) -> None:
+            if no is None:
+                return
+            print('  ' * nivel + f'- {no.valor}')
+            for f in no.filhos:
+                _imprimir(f, nivel + 1)
+
+        if self.vazia():
+            print('(árvore vazia)')
             return
-
-        # Caso haja um pai especificado
-        no_pai = self.buscar_no(pai)
-        if no_pai:
-            no_pai.adicionar_filhos(novo_no)
-            print(f"Nó '{valor}' adicionado como filho de '{pai}'.")
-        else:
-            print(f"Pai '{pai}' não encontrado! Nó '{valor}' não adicionado.")
-
-    def imprimir(self, no=None, nivel=0):
-        """Imprime a árvore de forma hierárquica."""
-        if self.raiz is None:
-            print("(Árvore vazia)")
-            return
-
-        if no is None:
-            no = self.raiz
-
-        print("  " * nivel + f"- {no.valor}")
-        for filho in no.filhos:
-            self.imprimir(filho, nivel + 1)
+        _imprimir(self.raiz, 0)
 
 
-def adicionar_ramo(arvore):
-    """Função interativa para adicionar nós na árvore."""
+def adicionar_ramo(arvore: Arvore) -> None:
+    """Modo interativo para inserir nós via terminal.
+
+    Uso: chama-se passando um objeto Arvore. Digite ENTER em valor vazio para
+    encerrar. Se a árvore já tiver raiz, você pode informar o valor do pai.
+    """
     while True:
+        print('\nÁrvore atual:')
         arvore.imprimir()
-        print("\nEntre com os dados ou pressione ENTER para encerrar.")
-        valor = input("Digite o valor/dado a ser inserido: ")
-
+        print('\nEntre com os dados ou ENTER para encerrar.')
+        valor = input('Digite o valor/dado a ser inserido: ').strip()
         if not valor:
             break
 
         pai = None
         if not arvore.vazia():
-            pai = input("Digite o pai para esse dado (ou ENTER se for raiz): ")
-            if not pai:
-                pai = None
+            pai = input('Digite o valor do pai (ENTER para anexar à raiz): ').strip() or None
 
-        arvore.adicionar_no(valor, pai)
+        try:
+            arvore.adicionar_no(valor, pai)
+        except ValueError as e:
+            print('Erro:', e)
 
 
-if __name__ == "__main__":
-    # Criando uma árvore
-    arvore = Arvore()
+def demo() -> None:
+    """Demonstração não interativa usada para validar rapidamente."""
+    a = Arvore()
+    a.adicionar_no('raiz')
+    a.adicionar_no('filho1', 'raiz')
+    a.adicionar_no('filho2', 'raiz')
+    a.adicionar_no('filho1.1', 'filho1')
+    a.adicionar_no('filho2.1', 'filho2')
+    print('Árvore de demonstração:')
+    a.imprimir()
 
-    # Adicionando nós interativamente
-    adicionar_ramo(arvore)
 
-    print("\nÁrvore final:")
-    arvore.imprimir()
+if __name__ == '__main__':
+    # Se DEMO=1 no ambiente, roda demo não interativa (útil para validação)
+    if os.environ.get('DEMO') == '1':
+        demo()
+    else:
+        arv = Arvore()
+        print('Modo interativo: insira nós. Deixe em branco para sair.')
+        adicionar_ramo(arv)
