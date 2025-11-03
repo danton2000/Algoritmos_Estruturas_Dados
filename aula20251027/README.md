@@ -14,7 +14,7 @@ Este README resume de forma prática e objetiva o que o script `jogocomtkinterV2
   - `None` — casa vazia
   - `'P'` — peça preta
   - `'B'` — peça branca
-  Acesso: `tabuleiro[linha][coluna]` (complexidade O(1)).
+  Acesso: `tabuleiro[linha][coluna]`.
 
 - Jogada: objeto com campos
   - `origem` (linha, coluna)
@@ -76,10 +76,3 @@ Observação: o script abre uma janela GUI — execute em um ambiente com interf
 
 ## Arquivos relacionados
 - `aula20251027/jogocomtkinterV2.py` — código principal do jogo (GUI + lógica).
-
----
-
-Se quiser, eu posso:
-- adicionar um README mais curto para slides,
-- gerar um diagrama ASCII simples mostrando a árvore de jogadas,
-- ou implementar uma das melhorias acima (diga qual preferir).
