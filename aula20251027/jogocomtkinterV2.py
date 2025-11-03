@@ -1,7 +1,9 @@
 
-"""
-Jogo de Damas - Versão Completa com Tkinter
-Criado do zero com interface gráfica moderna
+"""Jogo de Damas - Versão com interface Tkinter.
+
+Implementação didática com interface Tkinter. Os comentários foram
+adicionados de forma prática e objetiva para facilitar leitura e uso em
+apresentações. Não altera a lógica original do jogo.
 """
 
 # importação libs do Tkinter - Front End dessa aplicação
@@ -16,10 +18,15 @@ from abc import ABC
 
 
 class Peca(ABC):
+    """Classe base simples para geração de IDs.
+
+    Usada apenas aqui para manter um contador global de objetos (ex.: jogadas).
+    """
     id_peca = 0
 
     @classmethod
     def gerar_id(cls):
+        # Incrementa e retorna um id único (simples e suficiente para exemplos)
         cls.id_peca += 1
         return cls.id_peca
 
@@ -30,6 +37,8 @@ class Jogada:
         self.origem = origem
         self.destino = destino
         self.tipo = tipo  # 'movimento' ou 'captura'
+        # Ponteiros para montar uma árvore de jogadas (sequências)
+        # Convenção: movimento -> filho_esquerdo, captura -> filho_direito
         self.filho_esquerdo = None
         self.filho_direito = None
 
@@ -39,12 +48,15 @@ class ArvoreDeJogadas:
         self.raiz = None
 
     def inserir_jogada(self, nova_jogada: Jogada):
+        # Insere a jogada na árvore; a primeira jogada vira raiz
         if self.raiz is None:
             self.raiz = nova_jogada
         else:
             self._inserir(self.raiz, nova_jogada)
 
     def _inserir(self, atual: Jogada, nova_jogada: Jogada):
+        # Tenta encaixar nova_jogada na árvore verificando sequência lógica
+        # (destino do nó atual == origem da nova jogada)
         if atual.destino == nova_jogada.origem:
             if nova_jogada.tipo == 'movimento':
                 if atual.filho_esquerdo is None:
@@ -64,6 +76,7 @@ class ArvoreDeJogadas:
 
     def exibir_in_ordem(self):
         def _in_ordem(no):
+            # Exibição em ordem (esquerda, nó, direita) para debug/inspeção
             if no:
                 _in_ordem(no.filho_esquerdo)
                 print(f"{no.tipo.upper()}: {no.origem} → {no.destino}")
@@ -104,6 +117,11 @@ class JogoDamas:
         self.jogada_origem = None
         self.jogada_destino = None
         self.tipo_jogada = "movimento"
+
+    # Observações rápidas sobre o estado:
+    # - tabuleiro: matriz 8x8 com 'P' para peça preta, 'B' para branca ou None
+    # - jogador: indica quem joga agora ('P' ou 'B')
+    # - jogada_origem/destino: coordenadas selecionadas pelo usuário
 
         # Árvore de jogadas
         self.arvore = ArvoreDeJogadas()
@@ -207,7 +225,11 @@ class JogoDamas:
         self.set_tipo_jogada("movimento")
 
     def desenhar_tabuleiro(self):
-        """Desenha o tabuleiro no canvas"""
+        """Desenha o tabuleiro no canvas.
+
+        Observações: define um tamanho fixo de célula e desenha peças com
+        círculos coloridos. As coordenadas exibidas ajudam no input manual.
+        """
         self.board_canvas.delete("all")
 
         cell_size = 50
@@ -321,6 +343,8 @@ class JogoDamas:
                                      font=('Arial', 8), fill='white')
 
         # Desenhar filhos
+        # Calcula deslocamento horizontal para posicionar filhos em níveis
+        # mais profundos; valor diminui conforme o nível aumenta
         offset_x = node_width * (2 ** (3 - nivel)) // 3
 
         if no.filho_esquerdo:
