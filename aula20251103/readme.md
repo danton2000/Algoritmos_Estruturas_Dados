@@ -1,0 +1,1 @@
+> Colocar o exemplo da nova estrutura de dados da aula do dia 03/11 aqui
