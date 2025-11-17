@@ -1,0 +1,204 @@
+Perfeito!
+Vou reestruturar tudo novamente, incluindo os IDs dos objetos (ex: 9AC0, 9AF0, etc.) exatamente como aparecem no seu log, para você entender qual nó é qual durante as rotações.
+
+A seguir está a versão organizada, clara e rastreável do que o seu script printou — agora com os valores + IDs sempre juntos, como:
+
+50 (id=9AC0)
+100 (id=9AF0)
+
+etc.
+
+✅ REESTRUTURAÇÃO COMPLETA COM OS IDs DOS OBJETOS
+🔵 1) Inserindo 50
+Caminho:
+
+NoAtual = 100 (id=9AF0)
+
+NoAtual = None → criar nó
+
+Nó criado:
+Novo nó: 50 (id=9AC0)
+Esq=None  Dir=None  Altura=1
+
+Atualização do nó pai:
+NoAtual: 100 (id=9AF0)
+Altura = 2
+FB = -1
+
+Árvore:
+Nó: 50 (id=9AC0)  -- Esq=None  Dir=None  Alt=1
+Nó: 100(id=9AF0)  -- Esq=9AC0  Dir=None  Alt=2
+
+🔵 2) Inserindo 20
+Caminho:
+
+NoAtual = 100 (9AF0)
+
+NoAtual = 50 (9AC0)
+
+NoAtual = None → criar nó
+
+Nó criado:
+Novo nó: 20 (id=9B20)
+Esq=None  Dir=None  Altura=1
+
+Atualização:
+NoAtual: 50 (9AC0) → Altura=2  FB=-1
+NoAtual: 100(9AF0) → Altura=3  FB=-2  → Rotação Direita
+
+⚙️ Rotação Direita
+Antes:
+100 (9AF0)
+└── 50 (9AC0)
+    └── 20 (9B20)
+
+Impressão do script:
+Antes da Rotacao Direita:
+   100 (9AF0) -- Esq=9AC0  Dir=None
+   50  (9AC0) -- Esq=9B20  Dir=None
+
+Depois:
+   50 (9AC0)
+  /   \
+20    100
+
+Script após rotação:
+100 (9AF0) -- Esq=None  Dir=None
+50  (9AC0) -- Esq=9B20  Dir=9AF0
+
+🔵 3) Inserindo 80
+Caminho:
+
+NoAtual = 50 (9AC0)
+
+NoAtual = 100 (9AF0)
+
+NoAtual = None → criar nó
+
+Nó criado:
+Novo nó: 80 (id=9B80)
+Altura=1
+
+Atualização:
+100 (9AF0) → Altura=2  FB=-1
+50  (9AC0) → Altura=3  FB=1
+
+Árvore:
+20 (9B20)
+50 (9AC0) -- Esq=9B20  Dir=9AF0
+80 (9B80)
+100(9AF0) -- Esq=9B80  Dir=None
+
+🔵 4) Inserindo 90
+Caminho:
+
+50 (9AC0)
+
+100 (9AF0)
+
+80 (9B80)
+
+None → inserir
+
+Nó criado:
+Novo nó: 90 (id=9B50)
+Altura=1
+
+Atualizações:
+80 (9B80) → Altura=2  FB=1
+100(9AF0)→ Altura=3  FB=-2 → ❗ Rotação Esquerda
+
+⚙️ Rotação Esquerda no Filho 80 (9B80)
+Antes:
+80 (9B80)
+└── 90 (9B50)
+
+Depois:
+   90 (9B50)
+  /
+80 (9B80)
+
+⚙️ Rotação Direita em 100 (9AF0)
+Antes:
+  100 (9AF0)
+  /
+90 (9B50)
+└── 80 (9B80)
+
+Depois:
+   90 (9B50)
+  /     \
+80 (9B80)  100 (9AF0)
+
+Árvore final do passo:
+20 (9B20)
+50 (9AC0) -- Dir=9B50
+80 (9B80)
+90 (9B50)  -- Esq=9B80  Dir=9AF0
+100(9AF0)
+
+🔵 5) Inserindo 85
+Caminho:
+
+50 (9AC0)
+
+90 (9B50)
+
+80 (9B80)
+
+None → inserir
+
+Nó criado:
+Novo nó: 85 (id=9BE0)
+Altura=1
+
+Atualizações:
+80 (9B80) → Altura=2  FB=1
+90 (9B50) → Altura=3  FB=-1
+50 (9AC0) → Altura=4  FB=2 → ❗ Rotação Dupla
+
+⚙️ 1ª Parte — Rotação Direita no filho 90 (9B50)
+Antes:
+90 (9B50)
+└── 80(9B80)
+     └── 85(9BE0)
+
+Depois:
+90 (9B50)
+└── 85(9BE0)
+    └── 80(9B80)
+
+⚙️ 2ª Parte — Rotação Esquerda em 50 (9AC0)
+Antes:
+      50(9AC0)
+        \
+         90(9B50)
+        /
+      85(9BE0)
+     /
+   80(9B80)
+
+Depois (ÁRVORE FINAL):
+              80 (9B80)
+          /                 \
+     50 (9AC0)           90 (9B50)
+     /       \          /        \
+20(9B20)    85(9BE0) 100(9AF0)
+
+🟢 Árvore Final (com IDs):
+                80 (id=9B80)
+            /                     \
+     50 (9AC0)                90 (9B50)
+     /        \              /        \
+20(9B20)     85(9BE0)   100(9AF0)
+
+🎉 Pronto!
+
+Agora você tem toda a execução, passo a passo, com:
+
+✔ valores
+✔ estrutura
+✔ rotações
+✔ alturas
+✔ fatores de balanceamento
+✔ e principalmente os IDs dos objetos para rastrear exatamente como o script trabalhou.
