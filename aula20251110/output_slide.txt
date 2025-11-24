@@ -1,0 +1,135 @@
+========== Árvore vazia ==========
+Primeiro No: a310> -- Valor: 100  Altura: 1  Esq.None  Dir.None
+Enter
+
+=============== Árvore ================
+Nó: a310> -- Esq.None Valor: 100  Dir.None Alt.1
+=========================================
+
+----- Adicionando Nó Folha: 50 ------
+>>> NoAtual: <__main__.No object at 0x000002650223a310>
+>>> NoAtual: None
+    NovoNo: e070> -- Esq.None Valor: 50  Dir.None   Altura 1
+    NoAtual 100  Altura: 2
+   FB: -1
+
+=============== Árvore ================
+Nó: e070> -- Esq.None Valor: 50  Dir.None Alt.1
+Nó: a310> -- Esq.e070> Valor: 100  Dir.None Alt.2
+=========================================
+
+----- Adicionando Nó Folha: 20 ------
+>>> NoAtual: <__main__.No object at 0x000002650223a310>
+>>> NoAtual: <__main__.No object at 0x00000265024Ce070>
+>>> NoAtual: None
+    NovoNo: fa55> -- Esq.None Valor: 20  Dir.None   Altura 1
+    NoAtual 50  Altura: 2
+   FB: -1
+    NoAtual 100  Altura: 3
+   FB: -2
+Fazer Rotação a Direita +
+Antes da Rotacao Direita
+    : a310> -- Esq.e070> Valor: 100  Dir.None
+    : e070> -- Esq.fa55> Valor: 50  Dir.None
+Após da Rotacao Direita
+    : a310> -- Esq.None Valor: 100  Dir.None
+    : e070> -- Esq.fa55> Valor: 50  Dir.a310>
+Enter
+
+=============== Árvore ================
+Nó: fa55> -- Esq.None Valor: 20  Dir.None Alt.1
+Nó: e070> -- Esq.fa55> Valor: 50  Dir.a310> Alt.2
+Nó: a310> -- Esq.None Valor: 100  Dir.None Alt.1
+=========================================
+
+----- Adicionando Nó Folha: 80 ------
+>>> NoAtual: <__main__.No object at 0x00000265024Ce070>
+>>> NoAtual: <__main__.No object at 0x000002650223a310>
+>>> NoAtual: None
+    NovoNo: B6F0> -- Esq.None Valor: 80  Dir.None   Altura 1
+    NoAtual 100  Altura: 2
+   FB: -1
+    NoAtual 50  Altura: 3
+   FB: 1
+
+=============== Árvore ================
+Nó: fa55> -- Esq.None Valor: 20  Dir.None Alt.1
+Nó: e070> -- Esq.fa55> Valor: 50  Dir.a310> Alt.3
+Nó: B6F0> -- Esq.None Valor: 80  Dir.None Alt.1
+Nó: a310> -- Esq.B6F0> Valor: 100  Dir.None Alt.2
+=========================================
+
+----- Adicionando Nó Folha: 90 ------
+>>> NoAtual: <__main__.No object at 0x00000265024Ce070>
+>>> NoAtual: <__main__.No object at 0x000002650223a310>
+>>> NoAtual: <__main__.No object at 0x00000265022AB6F0>
+>>> NoAtual: None
+    NovoNo: B820> -- Esq.None Valor: 90  Dir.None   Altura 1
+    NoAtual 80  Altura: 2
+   FB: 1
+    NoAtual 100  Altura: 3
+   FB: -2
+Fazer Rotação a Esquerda +
+Antes da Rotacao Esquerda
+   : B6F0> -- Esq.None Valor: 80  Dir.B820>
+   : B820> -- Esq.None Valor: 90  Dir.None
+Apos da Rotacao Esquerda
+   : B6F0> -- Esq.None Valor: 80  Dir.None
+   : B820> -- Esq.B6F0> Valor: 90  Dir.None
+Enter
+Antes da Rotacao Direita
+    : a310> -- Esq.B820> Valor: 100  Dir.None
+    : B820> -- Esq.B6F0> Valor: 90  Dir.None
+Após da Rotacao Direita
+    : a310> -- Esq.None Valor: 100  Dir.None
+    : B820> -- Esq.B6F0> Valor: 90  Dir.a310>
+Enter
+    NoAtual 50  Altura: 3
+   FB: 1
+
+=============== Árvore ================
+Nó: fa55> -- Esq.None Valor: 20  Dir.None Alt.1
+Nó: e070> -- Esq.fa55> Valor: 50  Dir.B820> Alt.3
+Nó: B6F0> -- Esq.None Valor: 80  Dir.None Alt.1
+Nó: B820> -- Esq.B6F0> Valor: 90  Dir.a310> Alt.2
+Nó: a310> -- Esq.None Valor: 100  Dir.None Alt.1
+=========================================
+
+----- Adicionando Nó Folha: 85 ------
+>>> NoAtual: <__main__.No object at 0x00000265024Ce070>
+>>> NoAtual: <__main__.No object at 0x00000265022AB820>
+>>> NoAtual: <__main__.No object at 0x00000265022AB6F0>
+>>> NoAtual: None
+    NovoNo: 7AD0> -- Esq.None Valor: 85  Dir.None   Altura 1
+    NoAtual 80  Altura: 2
+   FB: 1
+    NoAtual 90  Altura: 3
+   FB: -1
+    NoAtual 50  Altura: 4
+   FB: 2
+Fazer Rotação a Esquerda em -
+Antes da Rotacao Direita
+    : B820> -- Esq.B6F0> Valor: 90  Dir.a310>
+    : B6F0> -- Esq.None Valor: 80  Dir.7AD0>
+Após da Rotacao Direita
+    : B820> -- Esq.7AD0> Valor: 90  Dir.a310>
+    : B6F0> -- Esq.None Valor: 80  Dir.B820>
+Enter
+Antes da Rotacao Esquerda
+   : e070> -- Esq.fa55> Valor: 50  Dir.B6F0>
+   : B6F0> -- Esq.None Valor: 80  Dir.B820>
+Apos da Rotacao Esquerda
+   : e070> -- Esq.fa55> Valor: 50  Dir.None
+   : B6F0> -- Esq.e070> Valor: 80  Dir.B820>
+Enter
+
+Árvore completa
+
+=============== Árvore ================
+Nó: fa55> -- Esq.None Valor: 20  Dir.None Alt.1
+Nó: e070> -- Esq.fa55> Valor: 50  Dir.None Alt.2
+Nó: B6F0> -- Esq.e070> Valor: 80  Dir.B820> Alt.3
+Nó: 7AD0> -- Esq.None Valor: 85  Dir.None Alt.1
+Nó: B820> -- Esq.7AD0> Valor: 90  Dir.a310> Alt.2
+Nó: a310> -- Esq.None Valor: 100  Dir.None Alt.1
+=========================================
